@@ -583,6 +583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 77273933}
+  - component: {fileID: 77273939}
   - component: {fileID: 77273935}
   - component: {fileID: 77273936}
   - component: {fileID: 77273937}
@@ -755,7 +756,44 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - name: After buy
+  - name: Failed Buy
+    chapterSetEvent:
+      m_PersistentCalls:
+        m_Calls: []
+    lines:
+    - character: {fileID: 11400000, guid: d168827112861d74684ee2c573c43d23, type: 2}
+      line: Are you trying to swindle me??
+      lineEvent:
+        m_PersistentCalls:
+          m_Calls: []
+    chapterEndedEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 676497219}
+          m_TargetAssemblyTypeName: ChoiceScreen, Assembly-CSharp
+          m_MethodName: ChoiceOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 77273935}
+          m_TargetAssemblyTypeName: Speech, Assembly-CSharp
+          m_MethodName: SwitchChapter
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - name: Succeeded Buy
     chapterSetEvent:
       m_PersistentCalls:
         m_Calls: []
@@ -767,7 +805,31 @@ MonoBehaviour:
           m_Calls: []
     chapterEndedEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 676497219}
+          m_TargetAssemblyTypeName: ChoiceScreen, Assembly-CSharp
+          m_MethodName: ChoiceOver
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 77273935}
+          m_TargetAssemblyTypeName: Speech, Assembly-CSharp
+          m_MethodName: SwitchChapter
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   currentCharacter: {fileID: 0}
   EndGame:
     m_PersistentCalls:
@@ -791,18 +853,6 @@ MonoBehaviour:
     onChosen:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 676497217}
-          m_TargetAssemblyTypeName: Manager, Assembly-CSharp
-          m_MethodName: Buy
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: b72e98110c1c3fb429791edfcbe2afda, type: 2}
-            m_ObjectArgumentAssemblyTypeName: Item, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 676497219}
           m_TargetAssemblyTypeName: ChoiceScreen, Assembly-CSharp
           m_MethodName: ChoiceOver
@@ -815,10 +865,10 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 77273935}
-          m_TargetAssemblyTypeName: Speech, Assembly-CSharp
-          m_MethodName: SwitchChapter
-          m_Mode: 3
+        - m_Target: {fileID: 77273939}
+          m_TargetAssemblyTypeName: Purchasable, Assembly-CSharp
+          m_MethodName: EvaluatePurchase
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -829,7 +879,7 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 77273935}
           m_TargetAssemblyTypeName: Speech, Assembly-CSharp
-          m_MethodName: UpdateVisuals
+          m_MethodName: Interact
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -969,6 +1019,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &77273939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77273932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17f03a9bade0ab644970598696b256a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visuals: {fileID: 1399206067}
+  speech: {fileID: 77273935}
+  item: {fileID: 11400000, guid: b72e98110c1c3fb429791edfcbe2afda, type: 2}
+  failedBuyIndex: 5
+  succeededBuyIndex: 6
 --- !u!1 &93578715
 GameObject:
   m_ObjectHideFlags: 0
@@ -3939,6 +4006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 734c3ecc88ecf6943afe69c63ec8fe0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryManager: {fileID: 0}
   money: 0
   moneyUI: {fileID: 1416448154}
 --- !u!4 &676497218
@@ -3991,6 +4059,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cc9947bd5c534e41b4ba65e62ffba21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invVisuals: {fileID: 0}
+  buttons:
+  - {fileID: 447593430}
+  - {fileID: 1962426880}
+  - {fileID: 1874317960}
+  - {fileID: 1087270753}
+  - {fileID: 2122965860}
+  - {fileID: 1352689209}
+  - {fileID: 1516305309}
+  - {fileID: 1265593451}
+  - {fileID: 1531000898}
+  previewObjParent: {fileID: 0}
+  previewUI: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

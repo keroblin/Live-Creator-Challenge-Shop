@@ -51,12 +51,12 @@ public class Speech : Interactable
         {
             base.Interact();
             UpdateVisuals();
-            Debug.Log("InitialInteraction");
+            //Debug.Log("InitialInteraction");
         }
         else
         {
             Skip();
-            Debug.Log("SkipInteraction");
+            //Debug.Log("SkipInteraction");
         }
     }
 
@@ -66,7 +66,7 @@ public class Speech : Interactable
         currentChapter = chapters[index];
         currentChapter.chapterSetEvent.Invoke();
         lineIndex = 0;
-        Debug.Log("Switched chapter to " + currentChapter.name);
+        //Debug.Log("Switched chapter to " + currentChapter.name);
         currentLine = currentChapter.lines[0];
     }
 
@@ -76,7 +76,7 @@ public class Speech : Interactable
         {
             return;
         }
-        Debug.Log("Invoked line event");
+        //Debug.Log("Invoked line event");
         currentLine.lineEvent.Invoke();
         if (!SpeechManager.instance.isSet)
         {
@@ -93,12 +93,12 @@ public class Speech : Interactable
         {
             lineIndex++;
             currentLine = currentChapter.lines[lineIndex];
-            Debug.Log("Progressed line");
+            //Debug.Log("Progressed line");
             UpdateVisuals();
         }
         else
         {
-            Debug.Log("Chapter end event invoked");
+            //Debug.Log("Chapter end event invoked");
             currentChapter.chapterEndedEvent.Invoke();
             SpeechManager.instance.OnUnset();
         }
@@ -133,7 +133,7 @@ public class Speech : Interactable
 
     public void HideUI()
     {
-        Debug.Log("Hid ui");
+        //Debug.Log("Hid ui");
         SpeechManager.instance.OnUnset();
         uiHidden = true;
     }

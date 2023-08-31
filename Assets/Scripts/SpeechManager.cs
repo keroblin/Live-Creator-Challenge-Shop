@@ -33,14 +33,14 @@ public class SpeechManager : MonoBehaviour
         {
             visualsObject.SetActive(true);
 
-            Debug.Log("Turned on visuals for " + name);
+            //Debug.Log("Turned on visuals for " + name);
         }
         if (animator)
         {
             animator.Play(inAnimName);
         }
         isSet = true;
-        Debug.Log("Set " + name);
+        //Debug.Log("Set " + name);
     }
 
     IEnumerator TypeWriter()
@@ -66,7 +66,7 @@ public class SpeechManager : MonoBehaviour
         {
             arrow.SetActive(true);
         }
-        Debug.Log("Skipped and stopped writing");
+        //Debug.Log("Skipped and stopped writing");
         isWriting = false;
     }
 
