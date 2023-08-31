@@ -11,6 +11,8 @@ public class Manager : MonoBehaviour
     public Inventory inventoryManager;
     public float money;
     public TextMeshProUGUI moneyUI;
+    public PlayerController playerController;
+    public CursorLockMode lastMode;
 
     private void OnEnable()
     {
@@ -20,6 +22,20 @@ public class Manager : MonoBehaviour
     {
         moneyUI.text = "£0.00";
     }
+
+    public void CursorToUI() 
+    {
+        lastMode = Cursor.lockState;
+        Cursor.lockState = CursorLockMode.Confined;
+        playerController.SetLookStatus(false);
+    }
+    public void CursorFromUI()
+    {
+        Cursor.lockState = lastMode;
+        playerController.SetLookStatus(true);
+    }
+
+
     public class InventoryItem
     {
         public Item item;
@@ -35,7 +51,7 @@ public class Manager : MonoBehaviour
             inventoryItem = inventory.Find((x) => x.item == item);
         }
         
-        if (inventoryItem != null)
+        if (inventoryItem.item != null)
         {
             inventoryItem.quantity++;
         }

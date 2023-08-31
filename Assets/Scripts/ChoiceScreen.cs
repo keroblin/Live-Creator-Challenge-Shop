@@ -13,8 +13,6 @@ public class ChoiceScreen : MonoBehaviour
     public GameObject visuals;
     public List<Button> buttons;
 
-    public CursorLockMode lastMode;
-
     private void Start()
     {
         instance = this;
@@ -23,8 +21,7 @@ public class ChoiceScreen : MonoBehaviour
 
     public void StartChoice(Choice choice)
     {
-        lastMode = Cursor.lockState;
-        Cursor.lockState = CursorLockMode.Confined;
+        Manager.Instance.CursorToUI();
         for(int i= 0; i<choice.options.Count; i++)
         {
             int index = i;
@@ -43,7 +40,7 @@ public class ChoiceScreen : MonoBehaviour
             button.onClick.RemoveAllListeners();
             button.gameObject.SetActive(false);
         }
-        Cursor.lockState = lastMode;
+        Manager.Instance.CursorFromUI();
         visuals.SetActive(false);
     }
 }

@@ -10,6 +10,8 @@ public class Inventory : MonoBehaviour
     public List<Button> buttons;
     public GameObject previewObjParent;
     public GameObject previewUI;
+
+    bool isDown;
     private void Start()
     {
         Manager.Instance.inventoryManager = this;
@@ -27,6 +29,28 @@ public class Inventory : MonoBehaviour
             inventory[index].button.transform.GetChild(1).GetComponentInChildren<TextMeshProUGUI>().text = inventory[index].quantity.ToString();
             inventory[index].button.gameObject.SetActive(true);
         }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab) && !isDown)
+        {
+            invVisuals.SetActive(!invVisuals.activeSelf);
+            if (invVisuals.activeSelf)
+            {
+                Manager.Instance.CursorToUI();
+            }
+            else
+            {
+                Manager.Instance.CursorFromUI();
+            }
+            isDown = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.Tab)) 
+        { 
+            isDown = false;
+        }
+
     }
 
     public void Preview(Item item)
